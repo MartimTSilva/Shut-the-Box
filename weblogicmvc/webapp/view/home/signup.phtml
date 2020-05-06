@@ -1,0 +1,61 @@
+<?php use ArmoredCore\WebObjects\Layout;
+
+Layout::includeLayout('header') ?>
+
+	<!-- container -->
+    <div class="container">
+        <div class="row">
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <br><br>
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h3 class="thin text-center">Criar Conta</h3>
+                            <hr>
+
+                            <form class="form-group">
+                                <div class="top-margin">
+                                    <label>Name <span class="text-danger">*</span></label>
+                                    <input type="text"  class="form-control" name="name">
+
+                                </div>
+                                <div class="top-margin">
+                                    <label>Username <span class="text-danger">*</span></label>
+                                    <input type="text"  class="form-control" name="username">
+
+                                </div>
+                                <div class="top-margin">
+                                    <label>Email <span class="text-danger">*</span></label>
+                                    <input type="email"  class="form-control" name="email">
+
+                                </div>
+                                <div class="top-margin">
+                                    <label>Password <span class="text-danger">*</span></label>
+                                    <input type="password"  class="form-control" name="password">
+
+                                </div>
+                                <div class="top-margin">
+                                    <label>Birthdate <span class="text-danger">*</span></label>
+                                    <input type="date"  class="form-control" name="birthdate">
+
+                                </div>
+
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-lg-8 text-right">
+                                        <button class="btn btn-action"  type="submit">Sign in</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </article>
+            <!-- /Article -->
+
+        </div>
+    </div>	<!-- /container -->

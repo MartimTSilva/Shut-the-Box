@@ -18,16 +18,17 @@ class HomeController extends BaseController
         return View::make('home.index');
     }
 
-    public function start(){
-
-        //View::attachSubView('titlecontainer', 'layout.pagetitle', ['title' => 'Quick Start']);
-        return View::make('home.start');
-    }
-
     public function login(){
-        Throw new Exception('Method not implemented. Do it yourself!');
+        return View::make('home.login');
     }
 
+    public function signup(){
+        return View::make('home.signup');
+    }
+
+    public function top(){
+        return View::make('home.top');
+    }
 
     public function worksheet(){
 

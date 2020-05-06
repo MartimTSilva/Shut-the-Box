@@ -12,19 +12,21 @@ use ArmoredCore\Facades\Router;
  *  Use convention: controllerName@methodActionName
  ****************************************************************************/
 
+//Home
 Router::get('/',			'HomeController/index');
 Router::get('home/',		'HomeController/index');
 Router::get('home/index',	'HomeController/index');
-Router::get('home/start',	'HomeController/start');
+Router::get('home/login',	'HomeController/login');
+Router::get('home/signup',	'HomeController/signup');
+Router::get('home/top',	    'HomeController/top');
 
+//Game
+Router::get('game/index',	'ShutBoxController/index');
 
+//User
+Router::get('user/edit',	'UserController/edit');
 
-
-
-
-
-
-
-
+//Admin
+Router::get('admin/index',	'AdminController/index');
 
 /************** End of URLEncoder Routing Rules ************************************/

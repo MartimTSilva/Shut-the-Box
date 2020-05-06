@@ -1,0 +1,11 @@
+<?php use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+use ArmoredCore\WebObjects\Data;
+
+Layout::includeLayout('header');
+$users = Data::get("users");
+?>
+<!-- container -->
+<div class="container">
+	<h2>Administração</h2>
+</div>	<!-- /container -->
