@@ -20,6 +20,10 @@ Router::get('home/login',	'HomeController/login');
 Router::get('home/signup',	'HomeController/signup');
 Router::get('home/top',	    'HomeController/top');
 
+//Register
+Router::Get('home/signup' ,'HomeController/signup');
+Router::Post('home/signup' ,'UserController/registerUser');
+
 //Game
 Router::get('game/index',	'ShutBoxController/index');
 
