@@ -28,22 +28,30 @@ class HomeController extends BaseController
     }
 
     public function getTop10(){
+        //Count para as classificações
         $count = 1;
+        //Criação do array para as classificações
         $Top10 = [];
+        //Vai buscar todas as classificações
         $all_classifications = Classification::all();
-        foreach ($all_classifications as $classification){
+        
+        //Faz query à BD para ir buscar todas as pontuações ordenadas por pontos
+        $mysqli = NEW MySQLi('localhost', 'root', '', 'shutthebox');
+        $result = $mysqli->query("SELECT * FROM classifications ORDER BY points ASC");
+        
+        while($rows = $result->fetch_assoc()){
             if ($count < 11){
                 $count++;
-                $user = User::find($classification->user_id);
+                $user = User::find($rows['user_id']);
                 $username = $user->username;
 
                 array_push($Top10, (object)[
-                    'user_id' => $classification->user_id,
-                    'points' => $classification->points,
+                    'user_id' => $rows['user_id'],
+                    'points' => $rows['points'],
                     'username' => $username
                     //'date' => $classification->date
                 ]);
-            }
+            } 
         }
         return View::make('home.top', ["leaderboard" => $Top10]);
     }
