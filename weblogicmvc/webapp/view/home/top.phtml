@@ -18,26 +18,26 @@ $leaderboard = Data::get("leaderboard");
             <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                 <table class="table table-hover">
                     <tr>
-                        <th>#</th>
-                        <th>Username</th>
-                        <th>Pontos</th>
-                        <th>Data</th>
+                        <th style="text-align:center;">#</th>
+                        <th style="text-align:center;">Username</th>
+                        <th style="text-align:center;">Pontos</th>
+                        <th style="text-align:center;">Data</th>
                     </tr>
                     <?php $i = 1; ?>
                     <?php foreach ($leaderboard as $classification) { ?>
                         <?php if(isset($_SESSION['userid']) && $_SESSION['userid'] == $classification->user_id) {?>
                         <tr style="background-color: beige;">
-                            <th><?= $i++ ?></th>
-                            <th><?= $classification->username ?></th>
-                            <th><?= $classification->points ?></th>
-                            <th>00/00/0000</th>
+                            <th style="width:5%; text-align:center;"><?= $i++ ?></th>
+                            <th style="width:20%; text-align:center;"><?= $classification->username ?></th>
+                            <th style="width:15%; text-align:center;"><?= $classification->points ?></th>
+                            <th style="width:20%; text-align:center;"><?= $classification->date ?>h</th>
                         </tr>
                         <?php } else { ?>
                             <tr>
-                            <th><?= $i++ ?></th>
-                            <th><?= $classification->username ?></th>
-                            <th><?= $classification->points ?></th>
-                            <th>00/00/0000</th>
+                            <th style="width:5%; text-align:center;"><?= $i++ ?></th>
+                            <th style="width:20%; text-align:center;"><?= $classification->username ?></th>
+                            <th style="width:15%; text-align:center;"><?= $classification->points ?></th>
+                            <th style="width:20%; text-align:center;"><?= $classification->date ?>h</th>
                         </tr>
                         <?php } ?>
                     <?php } ?>

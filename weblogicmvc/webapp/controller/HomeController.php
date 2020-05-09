@@ -45,11 +45,14 @@ class HomeController extends BaseController
                 $user = User::find($rows['user_id']);
                 $username = $user->username;
 
+                $originalDate = $rows['date'];
+                $newDate = date("d/m/Y - h:m", strtotime($originalDate));
+
                 array_push($Top10, (object)[
                     'user_id' => $rows['user_id'],
                     'points' => $rows['points'],
-                    'username' => $username
-                    //'date' => $classification->date
+                    'username' => $username,
+                    'date' => $newDate
                 ]);
             } 
         }
