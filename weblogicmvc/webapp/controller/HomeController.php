@@ -18,11 +18,12 @@ class HomeController extends BaseController
         return View::make('home.index');
     }
 
-    public function login(){
-        return View::make('home.login');
+    public function loginPage(){
+        $erro = "";
+        return view::make('home.login', ['erro' => $erro]);
     }
 
-    public function signup(){
+    public function signupPage(){
         return View::make('home.signup');
     }
 

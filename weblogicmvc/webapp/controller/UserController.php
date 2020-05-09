@@ -18,6 +18,44 @@ class UserController extends BaseController
         return View::make('user.edit');
     }
 
+    public function loginUser(){
+        $username = Post::get('username');
+        $password = Post::get('password');
+
+        $user = User::find_by_username($username);
+
+        if ($user){
+            if(password_verify($password, $user->password) && $user->blocked == 0)
+            {
+                Redirect::toRoute('game/index'); 
+                Session::set('loggedin', true);
+                Session::set('userid', $user->id);
+                Session::set('admin', $user->admin);
+                if ($user->admin == 1) {
+                    Redirect::toRoute('admin/index');
+                }
+                else {
+                    return view::make('home.index');    
+                }
+            } else {
+                $erro = "Erro! Informação incorreta.";
+                Redirect::flashToRoute('home/login', ['erro' => $erro]);
+            }
+        } else {
+            $erro = "Erro! Utilizador não existe.";
+            Redirect::flashToRoute('home/login', ['erro' => $erro]);
+        }
+    }
+
+    public function logoutUser(){
+        if (Session::get('loggedin') != null && Session::get('loggedin') == true) {
+            Session::destroy();
+            Session::set('loggedin', false);
+            $erro = "";
+            return view::make('home.login', ['erro' => $erro]);
+        }
+    }
+
     public function registerUser(){
         //Vai buscar os campos ao POST
         $name = Post::get('name');

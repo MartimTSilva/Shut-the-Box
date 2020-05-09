@@ -2,6 +2,7 @@
 use ArmoredCore\WebObjects\Asset;
 use ArmoredCore\Facades\AssetBundler;
 use ArmoredCore\WebObjects\URL;
+use ArmoredCore\WebObjects\Session;
 ?>
 
 <!DOCTYPE html>
@@ -39,9 +40,17 @@ use ArmoredCore\WebObjects\URL;
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav pull-right">
-                <li><a href="<?= URL::toRoute('game/index')?>">Game</a></li>
-                <li><a href="<?= URL::toRoute('home/top')?>">Classificações</a></li>
-                <li><a class="btn" href="<?= URL::toRoute('home/login')?>">Entrar</a></li>
+                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {?>
+                    <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == false) { ?>
+                        <li><a href="<?= URL::toRoute('game/index')?>">Game</a></li>
+                        <li><a href="<?= URL::toRoute('home/top')?>">Classificações</a></li>
+                        <li><a href="<?= Url::toRoute('home/user', Session::get('userid')) ?>">Editar Perfil</a></li>
+                    <?php } ?>
+                    <li><a class="btn" href="<?= URL::toRoute('home/')?>">LOG OUT</a></li>
+                <?php } else {?>
+                    <li><a href="<?= URL::toRoute('home/top')?>">Classificações</a></li>
+                    <li><a class="btn" href="<?= URL::toRoute('home/login')?>">Entrar</a></li>
+                <?php } ?>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
