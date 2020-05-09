@@ -1,11 +1,49 @@
 <?php
 use ArmoredCore\WebObjects\Asset;
 use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\Session;
 
 Layout::includeLayout('header');
+$leaderboard = Data::get("leaderboard");
 ?>
 
 <div class="container">
-    <h2>Leaderboards</h2>
-    <p>Página de classificações</p>
+    <div class="row">
+        <!-- Article main content -->
+        <article class="col-xs-12 maincontent">
+            <header class="page-header">
+                <h1 class="page-title">Leaderboards</h1>
+            </header>
+            <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <table class="table table-hover">
+                    <tr>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>Pontos</th>
+                        <th>Data</th>
+                    </tr>
+                    <?php $i = 1; ?>
+                    <?php foreach ($leaderboard as $classification) { ?>
+                        <?php if(isset($_SESSION['userid']) && $_SESSION['userid'] == $classification->user_id) {?>
+                        <tr style="background-color: beige;">
+                            <th><?= $i++ ?></th>
+                            <th><?= $classification->username ?></th>
+                            <th><?= $classification->points ?></th>
+                            <th>00/00/0000</th>
+                        </tr>
+                        <?php } else { ?>
+                            <tr>
+                            <th><?= $i++ ?></th>
+                            <th><?= $classification->username ?></th>
+                            <th><?= $classification->points ?></th>
+                            <th>00/00/0000</th>
+                        </tr>
+                        <?php } ?>
+                    <?php } ?>
+                </table>
+            </div>
+        </article>
+        <!-- /Article -->
+    </div>
 </div>

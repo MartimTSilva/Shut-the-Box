@@ -17,7 +17,6 @@ Router::get('/',			'HomeController/index');
 Router::get('home/',		'HomeController/index');
 Router::get('home/index',	'HomeController/index');
 Router::get('home/signup',	'HomeController/signup');
-Router::get('home/top',	    'HomeController/top');
 
 //Register
 Router::Get('home/signup' ,'HomeController/signupPage');
@@ -39,5 +38,8 @@ Router::post('user/update', 'UserController/updateUserDetails');
 
 //Admin
 Router::get('admin/index',	'AdminController/index');
+
+//Leaderboard
+Router::get('home/top',	    'HomeController/getTop10');
 
 /************** End of URLEncoder Routing Rules ************************************/

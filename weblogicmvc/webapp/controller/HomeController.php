@@ -27,8 +27,25 @@ class HomeController extends BaseController
         return View::make('home.signup');
     }
 
-    public function top(){
-        return View::make('home.top');
+    public function getTop10(){
+        $count = 1;
+        $Top10 = [];
+        $all_classifications = Classification::all();
+        foreach ($all_classifications as $classification){
+            if ($count < 11){
+                $count++;
+                $user = User::find($classification->user_id);
+                $username = $user->username;
+
+                array_push($Top10, (object)[
+                    'user_id' => $classification->user_id,
+                    'points' => $classification->points,
+                    'username' => $username
+                    //'date' => $classification->date
+                ]);
+            }
+        }
+        return View::make('home.top', ["leaderboard" => $Top10]);
     }
 
     public function worksheet(){
