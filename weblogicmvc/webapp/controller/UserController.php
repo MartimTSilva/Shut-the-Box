@@ -14,8 +14,9 @@ use ArmoredCore\WebObjects\Post;
  */
 class UserController extends BaseController
 {
-    public function edit(){
-        return View::make('user.edit');
+    public function editPage(){
+        $user = User::find_by_id(Session::get('userid'));
+        return view::make('user.edit', ['user' => $user]);
     }
 
     public function loginUser(){
@@ -79,6 +80,33 @@ class UserController extends BaseController
         } else {
             // return form with data and errors
             Redirect::flashToRoute('home/signup', ['user' => $user]);
+        }
+    }
+
+    public function updateUserDetails($id)
+    {
+        //Vai buscar o user com o id
+        $user = User::find($id);
+
+        //Vê se o utilizador introduziu uma nova password, se sim faz hash
+        if (!empty(Post::get('password')))
+            $password = password_hash(Post::get('password'), PASSWORD_DEFAULT);
+        else
+            $password = $user->password;
+
+        $user->update_attributes([
+            "name" => Post::get('name'),
+            "email" => Post::get('email'),
+            "password" => $password
+        ]);
+
+        //Se os dados forem válido, regista se não volta para a página de registo com os campos preenchidos
+        if($user->is_valid()){
+            $user->save();
+            Redirect::toRoute('home/index');
+        } else {
+            // return form with data and errors
+            Redirect::flashToRoute('user/edit', ['user' => $user]);
         }
     }
 }

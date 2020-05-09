@@ -44,7 +44,7 @@ use ArmoredCore\WebObjects\Session;
                     <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == false) { ?>
                         <li><a href="<?= URL::toRoute('game/index')?>">Game</a></li>
                         <li><a href="<?= URL::toRoute('home/top')?>">Classificações</a></li>
-                        <li><a href="<?= Url::toRoute('home/user', Session::get('userid')) ?>">Editar Perfil</a></li>
+                        <li><a href="<?= Url::toRoute('user/edit', Session::get('userid')) ?>">Editar Perfil</a></li>
                     <?php } ?>
                     <li><a class="btn" href="<?= URL::toRoute('home/')?>">LOG OUT</a></li>
                 <?php } else {?>
