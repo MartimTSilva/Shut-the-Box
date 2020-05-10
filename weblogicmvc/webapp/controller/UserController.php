@@ -15,8 +15,12 @@ use ArmoredCore\WebObjects\Post;
 class UserController extends BaseController
 {
     public function editPage(){
-        $user = User::find_by_id(Session::get('userid'));
-        return view::make('user.edit', ['user' => $user]);
+        if (isset($_SESSION['userid'])){
+            $user = User::find_by_id(Session::get('userid'));
+            return view::make('user.edit', ['user' => $user]);
+        } else {
+            return view::make('home.index');    
+        }
     }
 
     public function loginUser(){

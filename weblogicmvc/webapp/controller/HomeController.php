@@ -14,17 +14,24 @@ class HomeController extends BaseController
 {
 
     public function index(){
-
         return View::make('home.index');
     }
 
     public function loginPage(){
-        $erro = "";
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+            return View::make('home.index');
+        } else {
+            $erro = "";
         return view::make('home.login', ['erro' => $erro]);
+        }
     }
 
     public function signupPage(){
-        return View::make('home.signup');
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+            return View::make('home.index');
+        } else {
+            return View::make('home.signup');
+        }
     }
 
     public function getTop10(){

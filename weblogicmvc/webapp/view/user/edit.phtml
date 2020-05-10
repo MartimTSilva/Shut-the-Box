@@ -8,51 +8,49 @@ Layout::includeLayout('header') ?>
 <?php $user = Data::get('user') ?>
 <?php ErrMgr::attach($user) ?>
 
-    <!-- container -->
-    <div class="container">
-        <div class="row">
-            <!-- Article main content -->
-            <article class="col-xs-12 maincontent">
-                <br><br>
-                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <h3 class="thin text-center">Os seus dados</h3>
-                            <hr>
-                            <form class="form-group" action="<?= URL::toRoute('user/update', $user->id) ?>" method="POST">
+<!-- container -->
+<div class="container">
+    <div class="row">
+        <!-- Article main content -->
+        <article class="col-xs-12 maincontent">
+            <br><br>
+            <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3 class="thin text-center">Os seus dados</h3>
+                        <hr>
+                        <form class="form-group" action="<?= URL::toRoute('user/update', $user->id) ?>" method="POST">
+                        <div class="top-margin">
+                                <label>Username<span class="text-danger"></span></label>
+                                <input type="text" class="form-control" value="<?= $user->username ?>" name="username" disabled="disabled">
+                            </div>
                             <div class="top-margin">
-                                    <label>Username<span class="text-danger"></span></label>
-                                    <input type="text" class="form-control" value="<?= $user->username ?>" name="username" disabled="disabled">
+                                <label>Name<span class="text-danger"></span></label>
+                                <input type="text" class="form-control" value="<?= $user->name ?>" name="name">
+                                <?php echo(ErrMgr::bind('name')) ?>
+                            </div>                               
+                            <div class="top-margin">
+                                <label>Email<span class="text-danger"></span></label>
+                                <input type="email" class="form-control" value="<?= $user->email ?>" name="email">
+                                <?php echo(ErrMgr::bind('email')) ?>
+                                
+                            </div>
+                            <div class="top-margin">
+                                <label>Password <span class="text-danger"></span></label>
+                                <input type="password" class="form-control" name="password" placeholder="Insira a nova password">
+                                <?php echo(ErrMgr::bind('password')) ?>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-8 text-right">
+                                    <button class="btn btn-action" type="submit">Alterar dados</button>
                                 </div>
-                                <div class="top-margin">
-                                    <label>Name<span class="text-danger"></span></label>
-                                    <input type="text" class="form-control" value="<?= $user->name ?>" name="name">
-                                    <?php echo(ErrMgr::bind('name')) ?>
-                                </div>                               
-                                <div class="top-margin">
-                                    <label>Email<span class="text-danger"></span></label>
-                                    <input type="email" class="form-control" value="<?= $user->email ?>" name="email">
-                                    <?php echo(ErrMgr::bind('email')) ?>
-                                    
-                                </div>
-                                <div class="top-margin">
-                                    <label>Password <span class="text-danger"></span></label>
-                                    <input type="password" class="form-control" name="password" placeholder="Insira a nova password">
-                                    <?php echo(ErrMgr::bind('password')) ?>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-lg-8 text-right">
-                                        <button class="btn btn-action" type="submit">Alterar dados</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </article>
-            <!-- /Article -->
-        </div>
-    </div>	<!-- /container -->
-
-<?php Layout::includeLayout('footer') ?>
+            </div>
+        </article>
+        <!-- /Article -->
+    </div>
+</div>	<!-- /container -->

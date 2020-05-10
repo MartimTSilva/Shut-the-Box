@@ -6,44 +6,46 @@ use ArmoredCore\WebObjects\Data;
 Layout::includeLayout('header') ?>
 <?php $erro = Data::get('erro');?>
 
-	<!-- container -->
-	<div class="container">
-		<div class="row">
-			<!-- Article main content -->
-			<article class="col-xs-12 maincontent">
-				<br><br>
-				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<h3 class="thin text-center">Entre na sua conta</h3>
-							<p class="text-center text-muted">Não tem conta? <a href="<?= URL::toRoute('home/signup')?>">Criar Conta</a></p>
+<!-- container -->
+<div class="container">
+	<div class="row">
+		<!-- Article main content -->
+		<article class="col-xs-12 maincontent">
+			<br><br>
+			<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h3 class="thin text-center">Entre na sua conta</h3>
+						<p class="text-center text-muted">Não tem conta? <a href="<?= URL::toRoute('home/signup')?>">Criar Conta</a></p>
+						<hr>
+						<?php if(isset($erro)) { ?>
+							<p style="text-align: center; background: red; color: white; margin: 0px 65px 0 65px;">
+								<?php echo $erro ?>
+							</p>
+						<?php } ?>
+						<form class="form-group" action="<?= URL::toRoute('home/login') ?>" method="POST">
+							<div class="top-margin">
+								<label>Username <span class="text-danger">*</span></label>
+								<input required type="text" class="form-control" name="username" placeholder="Insira o seu username">
+							</div>
+							<div class="top-margin">
+								<label>Password <span class="text-danger">*</span></label>
+								<input required type="password" class="form-control" name="password" placeholder="Insira a sua password">
+							</div>
 							<hr>
-							<?php if(isset($erro)) { ?>
-								<p><?php echo $erro ?></p>
-							<?php } ?>
-							<form class="form-group" action="<?= URL::toRoute('home/login') ?>" method="POST">
-								<div class="top-margin">
-									<label>Username <span class="text-danger">*</span></label>
-									<input required type="text" class="form-control" name="username" placeholder="Insira o seu username">
+							<div class="row">
+								<div class="col-lg-8 text-right">
+									<button class="btn btn-action" type="submit">Entrar</button>
 								</div>
-								<div class="top-margin">
-									<label>Password <span class="text-danger">*</span></label>
-									<input required type="password" class="form-control" name="password" placeholder="Insira a sua password">
-								</div>
-								<hr>
-								<div class="row">
-									<div class="col-lg-8 text-right">
-										<button class="btn btn-action" type="submit">Entrar</button>
-									</div>
-								</div>
-							</form>
-						</div>
+							</div>
+						</form>
 					</div>
-
 				</div>
-				
-			</article>
-			<!-- /Article -->
 
-		</div>
-	</div>	<!-- /container -->
+			</div>
+			
+		</article>
+		<!-- /Article -->
+
+	</div>
+</div>	<!-- /container -->
