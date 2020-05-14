@@ -30,14 +30,14 @@ $leaderboard = Data::get("leaderboard");
                             <th style="width:5%; text-align:center;"><?= $i++ ?></th>
                             <th style="width:20%; text-align:center;"><?= $classification->username ?></th>
                             <th style="width:15%; text-align:center;"><?= $classification->points ?></th>
-                            <th style="width:20%; text-align:center;"><?= $classification->date ?>h</th>
+                            <th style="width:20%; text-align:center;"><?php $classification->date ?>h</th>
                         </tr>
                         <?php } else { ?>
                             <tr>
                             <th style="width:5%; text-align:center;"><?= $i++ ?></th>
                             <th style="width:20%; text-align:center;"><?= $classification->username ?></th>
                             <th style="width:15%; text-align:center;"><?= $classification->points ?></th>
-                            <th style="width:20%; text-align:center;"><?= $classification->date ?>h</th>
+                            <th style="width:20%; text-align:center;"><?php $classification->date ?>h</th>
                         </tr>
                         <?php } ?>
                     <?php } ?>

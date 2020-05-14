@@ -35,34 +35,27 @@ class HomeController extends BaseController
     }
 
     public function getTop10(){
-        //Count para as classificações
-        $count = 1;
         //Criação do array para as classificações
         $Top10 = [];
         //Vai buscar todas as classificações
-        $all_classifications = Classification::all();
-        
-        //Faz query à BD para ir buscar todas as pontuações ordenadas por pontos
-        $mysqli = NEW MySQLi('localhost', 'root', '', 'shutthebox');
-        $result = $mysqli->query("SELECT * FROM classifications ORDER BY points ASC");
-        
-        while($rows = $result->fetch_assoc()){
-            if ($count < 11){
-                $count++;
-                $user = User::find($rows['user_id']);
-                $username = $user->username;
+        $all_classifications = Classification::all(array('limit' => 10, 'order' => 'points asc'));
 
-                $originalDate = $rows['date'];
-                $newDate = date("d/m/Y - h:m", strtotime($originalDate));
+        foreach ($all_classifications as $classification){
+            $user = User::find($classification->user_id);
+            $username = $user->username;
 
-                array_push($Top10, (object)[
-                    'user_id' => $rows['user_id'],
-                    'points' => $rows['points'],
-                    'username' => $username,
-                    'date' => $newDate
-                ]);
-            } 
+            $originalDate = $classification->date;
+            //$newDate = date("d/m/Y - h:m", strtotime($originalDate));
+            //var_dump($originalDate);
+
+            array_push($Top10, (object)[
+                'user_id' => $classification->user_id,
+                'points' => $classification->points,
+                'username' => $username,
+                'date' => $originalDate
+            ]);
         }
+        //die();
         return View::make('home.top', ["leaderboard" => $Top10]);
     }
 
