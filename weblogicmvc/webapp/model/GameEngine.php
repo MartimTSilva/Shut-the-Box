@@ -2,8 +2,9 @@
 use ActiveRecord\Model;
 
 class GameEngine extends Model{
-    private $_deck;
-    private int $_gameState;
+    private $_board;
+    private $_gameState = 0;
+
 
     protected function startGame(){
         

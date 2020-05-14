@@ -1,8 +1,10 @@
 <?php
-use ArmoredCore\WebObjects\Asset;
+use ArmoredCore\WebObjects\URL;
+use ArmoredCore\WebObjects\Data;
 use ArmoredCore\WebObjects\Layout;
 
 Layout::includeLayout('header');
+$game = Data::get('game');
 ?>
 
 <div class="container">
@@ -28,7 +30,7 @@ Layout::includeLayout('header');
             <img src="/weblogicmvc/public/img/Dice/dieWhite3.png">
             <img src="/weblogicmvc/public/img/Dice/dieWhite6.png">
         </div>
-        <a class="btn btn-action btn-lg" role="button" href="">Começar jogo</a>
+        <a class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/startGame')?>">Começar jogo</a>
         <div class="bot">
             <div class="botPoints">
                 <p>&nbsp;</p>

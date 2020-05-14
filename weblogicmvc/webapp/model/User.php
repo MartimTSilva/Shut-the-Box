@@ -2,7 +2,6 @@
 use ActiveRecord\Model;
 
 class User extends Model{
-    /* Não é preciso estas validações, graças ao "required" dentro da tag <input> do form
     static $validates_presence_of = array(
         array(
             'name',
@@ -24,7 +23,7 @@ class User extends Model{
             'birthdate',
             'message' => 'A data de nascimento é um campo obrigatório.'
         )
-    );*/
+    );
     
     static $validates_size_of = array(
         array(
