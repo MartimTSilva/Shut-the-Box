@@ -25,7 +25,7 @@ $leaderboard = Data::get("leaderboard");
                     </tr>
                     <?php $i = 1; ?>
                     <?php foreach ($leaderboard as $classification) { ?>
-                        <?php if(isset($_SESSION['userid']) && $_SESSION['userid'] == $classification->user_id) {?>
+                        <?php if(Session::has('userid') && Session::get('userid') == $classification->user_id) {?>
                         <tr style="background-color: beige;">
                             <th style="width:5%; text-align:center;"><?= $i++ ?></th>
                             <th style="width:20%; text-align:center;"><?= $classification->username ?></th>
@@ -39,7 +39,7 @@ $leaderboard = Data::get("leaderboard");
                             <th style="width:15%; text-align:center;"><?= $classification->points ?></th>
                             <th style="width:20%; text-align:center;"><?php $classification->date ?>h</th>
                         </tr>
-                        <?php } ?>
+                        <?php }?>
                     <?php } ?>
                 </table>
             </div>

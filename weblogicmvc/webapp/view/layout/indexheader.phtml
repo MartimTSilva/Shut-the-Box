@@ -41,10 +41,12 @@ use ArmoredCore\WebObjects\Session;
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav pull-right">
-                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && isset($_SESSION['admin']) && $_SESSION['admin'] == false) {?>
-                    <li><a href="<?= URL::toRoute('game/index')?>">Jogar</a></li>
-                    <li><a href="<?= URL::toRoute('home/top')?>">Classificações</a></li>
-                    <li><a href="<?= Url::toRoute('user/edit', $_SESSION['userid']) ?>">Editar Perfil</a></li>
+                <?php if (Session::has('loggedin')) {?>
+                    <?php if(Session::get('admin') == false) { ?>
+                        <li><a href="<?= URL::toRoute('game/index')?>">Jogar</a></li>
+                        <li><a href="<?= URL::toRoute('home/top')?>">Classificações</a></li>
+                        <li><a href="<?= Url::toRoute('user/edit', Session::get('userid')) ?>">Editar Perfil</a></li>
+                    <?php } ?>
                     <li><a class="btn" href="<?= URL::toRoute('home/')?>">LOG OUT</a></li>
                 <?php } else {?>
                     <li><a href="<?= URL::toRoute('home/top')?>">Classificações</a></li>

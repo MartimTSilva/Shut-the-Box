@@ -14,7 +14,7 @@ class ShutBoxController extends BaseController
 {
 
     public function index(){
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        if (Session::has('loggedin') == true) {
             return View::make('game.index');
         } else {
             $erro = "Precisa de estar autenticado/a para poder jogar!";

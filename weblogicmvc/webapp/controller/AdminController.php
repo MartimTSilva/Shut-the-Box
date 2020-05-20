@@ -14,7 +14,7 @@ class AdminController extends BaseController
 {
 
     public function index(){
-        if(isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
+        if(Session::has('admin')) {
             return View::make('admin.index');
         } else {
             return View::make('home.index');

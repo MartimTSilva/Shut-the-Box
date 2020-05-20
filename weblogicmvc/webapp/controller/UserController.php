@@ -15,7 +15,7 @@ use ArmoredCore\WebObjects\Post;
 class UserController extends BaseController
 {
     public function editPage(){
-        if (isset($_SESSION['userid'])){
+        if (Session::has('userid')){
             $user = User::find_by_id(Session::get('userid'));
             return view::make('user.edit', ['user' => $user]);
         } else {
@@ -53,9 +53,8 @@ class UserController extends BaseController
     }
 
     public function logoutUser(){
-        if (Session::get('loggedin') != null && Session::get('loggedin') == true) {
+        if (Session::has('loggedin')) {
             Session::destroy();
-            Session::set('loggedin', false);
             $erro = "";
             return view::make('home.login', ['erro' => $erro]);
         }
