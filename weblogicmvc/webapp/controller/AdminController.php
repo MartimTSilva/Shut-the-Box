@@ -15,7 +15,7 @@ class AdminController extends BaseController
 
     public function index(){
         if(Session::has('admin')) {
-            return View::make('admin.index');
+            return View::make('admin.index', ["all_users" => User::all()]);
         } else {
             return View::make('home.index');
         }

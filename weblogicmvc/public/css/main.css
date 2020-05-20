@@ -89,3 +89,92 @@ img.pull-left { margin-right: 10px; }
 
 	.widget-simplenav { margin-left:-5px; }		
 	.widget-simplenav a{ margin:0 5px; }		
+
+/* Jogo */
+.gameTable {
+	background-color: #131315;
+	text-align: center;
+	margin-top: 40px;
+}
+
+.gameTable .player {
+	text-align: -webkit-center;
+}
+
+.gameTable .bot {
+	text-align: -webkit-center;
+}
+
+.gameTable .player p{
+    background-color: #4e4d4d;
+    font-size: x-large;
+	width: 50px;
+	padding: 5px;
+	margin-top: 40px;
+	color: white;
+}
+
+.gameTable .bot p{
+    background-color: #4e4d4d;
+    font-size: x-large;
+	width: 50px;
+    padding: 5px;
+	margin-bottom: 40px;
+	color: white;
+}
+
+.gameTable a{
+	margin-bottom: 80px;
+}
+
+.gameTable .playerNumbers img{
+	padding-top: 50px;
+}
+
+.gameTable .botNumbers img{
+	padding-bottom: 50px;
+}
+
+.gameTable .playerNumbers .btn{
+    padding: 10px;
+    width: 55px;
+	margin: 50px 5px 0 5px ;
+    font-size: x-large;
+}
+
+.gameTable .botNumbers .btn{
+    padding: 10px;
+    width: 55px;
+	margin: 0 5px 50px 5px ;
+	font-size: x-large;
+}
+
+.gameTable .dices img{
+	margin: 80px 45px 40px 45px ;
+}
+
+.gameTable .botNumbers img{
+	width: 85px;
+	margin-right: 30px;
+}
+
+.gameTable .playerNumbers img{
+	width: 75px;
+	margin-left: 30px;
+}
+
+#admin table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#admin  td, th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+#admin tr:nth-child(even) {
+	background-color: #dddddd;
+}

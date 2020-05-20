@@ -3,9 +3,36 @@ use ArmoredCore\WebObjects\URL;
 use ArmoredCore\WebObjects\Data;
 
 Layout::includeLayout('header');
-$users = Data::get("users");
+$list_all_users = Data::get("all_users");
 ?>
 <!-- container -->
 <div class="container">
 	<h2>Administração</h2>
-</div>	<!-- /container -->
+	<table id="admin">
+		<tr>
+			<th>Name</th>
+			<th>Username</th>
+			<th>Email</th>
+			<th>Bloqueado</th>
+			<th>Administrador</th>
+		</tr>
+		<?php foreach ($list_all_users as $user) { ?>
+			<tr>
+				<td style="width:35%;"><?= $user->name ?></td>
+				<td style="width:20%;"><?= $user->username ?></td>
+				<td style="width:35%;"><?= $user->email ?></td>
+				<?php if ($user->blocked == 0) {?>
+					<td><a style="width:100%;" class="btn btn-action" role="button" href="">Bloquear</a></td>
+				<?php } else { ?>
+					<td><a class="btn btn-action" role="button" href="">Desbloquear</a></td>
+				<?php } ?>
+				<?php if ($user->admin == 0) {?>
+					<td><a style="width:100%;" class="btn btn-action" role="button" href="">Promover</a></td>
+				<?php } else { ?>
+					<td><a class="btn btn-action" role="button" href="">Despromover</a></td>
+				<?php } ?>
+			</tr>
+		<?php } ?>
+	</table>
+</div>	
+<!-- /container -->
