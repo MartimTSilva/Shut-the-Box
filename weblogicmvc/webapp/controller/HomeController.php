@@ -18,7 +18,7 @@ class HomeController extends BaseController
     }
 
     public function loginPage(){
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        if (Session::has('loggedin')) {
             return View::make('home.index');
         } else {
             $erro = "";
@@ -27,7 +27,7 @@ class HomeController extends BaseController
     }
 
     public function signupPage(){
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        if (Session::has('loggedin')) {
             return View::make('home.index');
         } else {
             return View::make('home.signup');
