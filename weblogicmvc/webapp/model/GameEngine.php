@@ -1,20 +1,18 @@
 <?php
-use ActiveRecord\Model;
 
-class GameEngine extends Model{
+class GameEngine{
     private $_board;
     private $_gameState = 0;
 
-
-    protected function startGame(){
-        
+    public function startGame(){
+        $_board = new Board();
     }
 
-    protected function getGameState(){
-
+    public function getGameState(){
+        return $this->_gameState;
     }
 
-    protected function updateGameState(){
+    public function updateGameState(){
 
     }
 }

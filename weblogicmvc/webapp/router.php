@@ -41,7 +41,8 @@ Router::get('home/top',	    'HomeController/getTop10');
 
 //Game
 Router::get('game/index',	'ShutBoxController/index');
-Router::get('game/startGame',	'ShutBoxController/index');
+Router::get('game/startGame',	'ShutBoxController/startGame');
+Router::get('game/blockNumber',	'ShutBoxController/blockNumber');
 
 
 /************** End of URLEncoder Routing Rules ************************************/

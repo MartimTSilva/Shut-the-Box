@@ -1,9 +1,8 @@
 <?php
-use ActiveRecord\Model;
 use ArmoredCore\WebObjects\Session;
 
 //Faz chamadas de métodos de outras classes
-class Board extends Model{
+class Board{
     private $_dice;
     private $_resultDice1 = 0;
     private $_resultDice2 = 0;
@@ -25,21 +24,24 @@ class Board extends Model{
     //Verifica se pode jogar mais uma vez
     public function checkFinalPlayP1($sum){
         //Vê todas as somas possiveis da $sum e dos números não bloquados
-        $this->_blockedNumbersP1 = BlockedNumbers::$_numBlock;
-
-        //Se não poder, guarda os numeros bloquados e muda para o bot
-        //$this->_blockedNumbersP1 = Session::get('P1_numBlock');
-        return BlockedNumbers::checkPlay($sum);
+        if($this->checkIfPlayIsPossible($sum)){
+            return false;
+        } else {
+            //Se não poder, guarda os numeros bloqueados e muda para o bot
+            $this->_blockedNumbersP1 =  BlockedNumbers::$_numBlock;
+            return true;
+        }
     }
 
     //Verifica se pode jogar mais uma vez
     public function checkFinalPlayP2($sum){
-        //Vê todas as somas possiveis da $sum e dos números não bloquados
-        $this->_blockedNumbersP2 = BlockedNumbers::$_numBlock;
-
-        //Se não poder, guarda os numeros bloquados e muda para o bot
-        $this->_blockedNumbersP2 = Session::get('P2_numBlock');
-        return BlockedNumbers::checkPlay($sum);
+        if($this->checkIfPlayIsPossible($sum)){
+            return false;
+        } else {
+            //Se não poder, guarda os numeros bloqueados e muda para o bot
+            $this->_blockedNumbersP2 =  BlockedNumbers::$_numBlock;
+            return true;
+        }
     }
 
     public function getWinner(){
@@ -64,5 +66,32 @@ class Board extends Model{
         } else {
             return $_max_possible_points - Session::get('P2_numBlock');
         }
+    }
+
+    public function checkIfPlayIsPossible($sum)
+    {
+        $_availableNumbers = [1, 2 , 3, 4, 5, 6, 7, 8, 9];
+        $_availableNumbers = array_diff($_availableNumbers, BlockedNumbers::$_numBlock);
+        
+        foreach ($_availableNumbers as $number){
+            if ($number == $sum){
+                return true;
+            } else {
+                foreach ($_availableNumbers as $number_2nd_array)
+                if($number == $number_2nd_array)
+                {
+                    continue;
+                }
+                else
+                {
+                    $num_sum=$number + $number_2nd_array;
+                    if($num_sum == $sum)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

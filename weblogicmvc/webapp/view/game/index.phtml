@@ -2,6 +2,7 @@
 use ArmoredCore\WebObjects\URL;
 use ArmoredCore\WebObjects\Data;
 use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\Session;
 
 Layout::includeLayout('header');
 $game = Data::get('game');
@@ -11,15 +12,15 @@ $game = Data::get('game');
     <div class="gameTable">
         <div class="player">
             <div class="playerNumbers">
-                <a class="btn btn-action" role="button" href="">1</a>
-                <a class="btn btn-action" role="button" href="">2</a>
-                <a class="btn btn-action" role="button" href="">3</a>
-                <a class="btn btn-action" role="button" href="">4</a>
-                <a class="btn btn-action" role="button" href="">5</a>
-                <a class="btn btn-action" role="button" href="">6</a>
-                <a class="btn btn-action" role="button" href="">7</a>
-                <a class="btn btn-action" role="button" href="">8</a>
-                <a class="btn btn-action" role="button" href="">9</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 1)?>">1</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 2)?>">2</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 3)?>">3</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 4)?>">4</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 5)?>">5</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 6)?>">6</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 7)?>">7</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 8)?>">8</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 9)?>">9</a>
                 <img src="/weblogicmvc/public/img/user.png">
             </div>
             <div class="playerPoints">
@@ -30,22 +31,26 @@ $game = Data::get('game');
             <img src="/weblogicmvc/public/img/Dice/dieWhite3.png">
             <img src="/weblogicmvc/public/img/Dice/dieWhite6.png">
         </div>
-        <a class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/startGame')?>">Começar jogo</a>
+        <?php if (!Session::has('game')){?>
+            <a class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/startGame')?>">Começar jogo</a>
+        <?php } else {?>              
+            <a class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/throwDices')?>">Lançar dados</a>
+        <?php } ?>
         <div class="bot">
             <div class="botPoints">
                 <p>&nbsp;</p>
             </div>
             <div class="botNumbers">
                 <img src="/weblogicmvc/public/img/bot.png">
-                <a class="btn btn-action" role="button" href="">1</a>
-                <a class="btn btn-action" role="button" href="">2</a>
-                <a class="btn btn-action" role="button" href="">3</a>
-                <a class="btn btn-action" role="button" href="">4</a>
-                <a class="btn btn-action" role="button" href="">5</a>
-                <a class="btn btn-action" role="button" href="">6</a>
-                <a class="btn btn-action" role="button" href="">7</a>
-                <a class="btn btn-action" role="button" href="">8</a>
-                <a class="btn btn-action" role="button" href="">9</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 1)?>">1</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 2)?>">2</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 3)?>">3</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 4)?>">4</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 5)?>">5</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 6)?>">6</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 7)?>">7</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 8)?>">8</a>
+                <a class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 9)?>">9</a>
             </div>
         </div>
     </div>

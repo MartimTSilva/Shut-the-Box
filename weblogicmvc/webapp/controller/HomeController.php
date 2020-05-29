@@ -22,7 +22,7 @@ class HomeController extends BaseController
             return View::make('home.index');
         } else {
             $erro = "";
-        return view::make('home.login', ['erro' => $erro]);
+            return view::make('home.login', ['erro' => $erro]);
         }
     }
 

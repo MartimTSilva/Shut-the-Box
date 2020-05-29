@@ -15,10 +15,30 @@ class ShutBoxController extends BaseController
 
     public function index(){
         if (Session::has('loggedin') == true) {
+            Session::remove('game');
             return View::make('game.index');
         } else {
             $erro = "Precisa de estar autenticado/a para poder jogar!";
             return view::make('home.login', ['erro' => $erro]);
         }
+    }
+
+    public function startGame(){
+        $game = new GameEngine();
+        $game->startGame();
+
+        Session::set('game', $game);
+
+        return View::make('game.index', ['game' => $game]);
+    }
+
+    public function blockNumber($number, $diceSum){
+        $blockedNumber = new BlockedNumbers();
+        //Enquanto a soma dos dados não forem zero, não é possível acabar a jogada
+        do{
+            if($blockedNumber->blockNumber($number, $diceSum))
+                $diceSum = $diceSum - $number;
+                            
+        } while (!$blockedNumber->checkPlay($diceSum));
     }
 }
