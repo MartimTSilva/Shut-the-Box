@@ -44,18 +44,14 @@ class HomeController extends BaseController
             $user = User::find($classification->user_id);
             $username = $user->username;
 
-            $originalDate = $classification->date;
-            //$newDate = date("d/m/Y - h:m", strtotime($originalDate));
-            //var_dump($originalDate);
-
+            //Novo array para enviar o username
             array_push($Top10, (object)[
                 'user_id' => $classification->user_id,
                 'points' => $classification->points,
                 'username' => $username,
-                'date' => $originalDate
+                'date' => date_format( $classification->date, 'd/m/Y - H:m')
             ]);
         }
-        //die();
         return View::make('home.top', ["leaderboard" => $Top10]);
     }
 

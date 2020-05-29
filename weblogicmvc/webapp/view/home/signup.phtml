@@ -42,7 +42,7 @@ Layout::includeLayout('header') ?>
                                 </div>
                                 <div class="top-margin">
                                     <label>Birthdate <span class="text-danger">*</span></label>
-                                    <input required type="date" class="form-control" name="birthdate">
+                                    <input required type="date" value="<?php date_format(new DateTime($user->date), 'd/m/Y'); ?>" class="form-control" name="birthdate">
                                 </div>
                                 <hr>
                                 <div class="row">

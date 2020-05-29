@@ -6,7 +6,6 @@ use ArmoredCore\WebObjects\Session;
 
 Layout::includeLayout('header');
 $leaderboard = Data::get("leaderboard");
-\Tracy\Debugger::barDump($leaderboard, 'leaderboard');
 ?>
 
 <div class="container">
@@ -32,14 +31,14 @@ $leaderboard = Data::get("leaderboard");
                             <th style="width:5%; text-align:center;"><?= $i++ ?></th>
                             <th style="width:20%; text-align:center;"><?= $classification->username ?></th>
                             <th style="width:15%; text-align:center;"><?= $classification->points ?></th>
-                            <th style="width:20%; text-align:center;"><?= date_format( $classification->date, 'd/m/Y - h:m');?>h</th>
+                            <th style="width:20%; text-align:center;"><?= $classification->date ?>h</th>
                         </tr>
                         <?php } else { ?>
                             <tr>
                             <th style="width:5%; text-align:center;"><?= $i++ ?></th>
                             <th style="width:20%; text-align:center;"><?= $classification->username ?></th>
                             <th style="width:15%; text-align:center;"><?= $classification->points ?></th>
-                            <th style="width:20%; text-align:center;"><?= date_format( $classification->date, 'd/m/Y - h:m');?>h</th>
+                            <th style="width:20%; text-align:center;"><?= $classification->date ?>h</th>
                         </tr>
                         <?php }?>
                     <?php } ?>
