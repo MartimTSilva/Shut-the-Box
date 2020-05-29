@@ -32,6 +32,16 @@ class ShutBoxController extends BaseController
         return View::make('game.index', ['game' => $game]);
     }
 
+    public function throwDices(){
+        $game = Session::get('game');
+        
+        $board = new Board();
+        $board->throwDices();
+
+        Session::set('game', $game);
+        return View::make('game.index', ['game' => $game]);
+    }
+
     public function blockNumber($number, $diceSum){
         $blockedNumber = new BlockedNumbers();
         //Enquanto a soma dos dados não forem zero, não é possível acabar a jogada

@@ -10,16 +10,22 @@ class Board{
     private $_blockedNumbersP2 = [];
 
     //Lança 2 dados
-    public static function throwDices(){
-        $_resultDice1 = Dice::throwDices();
-        $_resultDice2 = Dice::throwDices();
+    public function throwDices(){
+        $dice = new Dice();
+        $this->_resultDice1 = $dice->throwDice();
+        $this->_resultDice2 = $dice->throwDice();
+
+        \Tracy\Debugger::barDump($this->_resultDice1, "Board");
+        \Tracy\Debugger::barDump($this->_resultDice2, "Board");
 
         //TODO: Ver se está a jogar o bot ou o player
-        Board::checkFinalPlayP1($_resultDice1 + $_resultDice2);
+        //Board::checkFinalPlayP1($_resultDice1 + $_resultDice2);
 
         //Else, bot
-        Board::checkFinalPlayP2($_resultDice1 + $_resultDice2);
+        //Board::checkFinalPlayP2($_resultDice1 + $_resultDice2);
     }
+
+
 
     //Verifica se pode jogar mais uma vez
     public function checkFinalPlayP1($sum){
