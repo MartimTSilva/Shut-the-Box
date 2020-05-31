@@ -38,6 +38,7 @@ class ShutBoxController extends BaseController
         $game = Session::get('game');
         
         $game->_board->throwDices();
+        $game->updateGameState(2);
 
         Session::set('game', $game);
         return View::make('game.index', ['game' => $game]);
