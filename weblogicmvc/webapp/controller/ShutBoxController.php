@@ -27,6 +27,8 @@ class ShutBoxController extends BaseController
         $game = new GameEngine();
         $game->startGame();
 
+        $game->updateGameState(1);
+
         Session::set('game', $game);
 
         return View::make('game.index', ['game' => $game]);

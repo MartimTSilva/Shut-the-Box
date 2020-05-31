@@ -2,7 +2,7 @@
 
 class GameEngine{
     public $_board;
-    private $_gameState = 0;
+    public $_gameState = 0;
 
     public function startGame(){
         $this->_board = new Board();
@@ -12,6 +12,7 @@ class GameEngine{
         return $this->_gameState;
     }
 
-    public function updateGameState(){
+    public function updateGameState($state){
+        $this->_gameState = $state;
     }
 }
