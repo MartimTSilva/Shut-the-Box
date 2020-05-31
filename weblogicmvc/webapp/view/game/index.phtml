@@ -29,8 +29,19 @@ $game = Data::get('game');
             </div>
         </div>
         <div class="dices">
-            <?php echo '<img src="' . Asset::image($game->_resultDice1 . '.png') . '">'; ?>
-            <?php echo '<img src="' . Asset::image($game->_resultDice2 . '.png') . '">'; ?>
+            <?php 
+            if (Session::has('game')){
+                if (isset($game->_resultDice1)){
+                    echo '<img src="' . Asset::image($game->_resultDice1 . '.png') . '">';
+                    echo '<img src="' . Asset::image($game->_resultDice2 . '.png') . '">';
+                } else { ?>
+                    <img src="/weblogicmvc/public/img/Dice/dieWhite1.png">
+                    <img src="/weblogicmvc/public/img/Dice/dieWhite1.png">
+                <?php }
+            } else {?>
+                <img src="/weblogicmvc/public/img/Dice/dieWhite1.png">
+                <img src="/weblogicmvc/public/img/Dice/dieWhite1.png">
+            <?php } ?>
         </div>
         <?php if (!Session::has('game')){?>
             <a class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/startGame')?>">Começar jogo</a>

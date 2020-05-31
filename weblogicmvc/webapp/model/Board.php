@@ -4,8 +4,8 @@ use ArmoredCore\WebObjects\Session;
 //Faz chamadas de métodos de outras classes
 class Board{
     private $_dice;
-    public $_resultDice1;
-    public $_resultDice2;
+    public $_resultDice1 = 0;
+    public $_resultDice2 = 0;
     public $_blockedNumbersP1 = [];
     public $_blockedNumbersP2 = [];
 
