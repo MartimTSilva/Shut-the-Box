@@ -35,12 +35,12 @@ $game = Data::get('game');
                     echo '<img src="' . Asset::image($game->_resultDice1 . '.png') . '">';
                     echo '<img src="' . Asset::image($game->_resultDice2 . '.png') . '">';
                 } else { ?>
-                    <img src="/weblogicmvc/public/img/Dice/dieWhite1.png">
-                    <img src="/weblogicmvc/public/img/Dice/dieWhite1.png">
+                    <img src="/weblogicmvc/public/img/blank_dice.png">
+                    <img src="/weblogicmvc/public/img/blank_dice.png">
                 <?php }
             } else {?>
-                <img src="/weblogicmvc/public/img/Dice/dieWhite1.png">
-                <img src="/weblogicmvc/public/img/Dice/dieWhite1.png">
+                <img src="/weblogicmvc/public/img/blank_dice.png">
+                <img src="/weblogicmvc/public/img/blank_dice.png">
             <?php } ?>
         </div>
         <?php if (!Session::has('game')){?>

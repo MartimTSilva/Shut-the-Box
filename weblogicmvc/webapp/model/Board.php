@@ -15,9 +15,6 @@ class Board{
         $this->_resultDice1 = $this->_dice->throwDice();
         $this->_resultDice2 = $this->_dice->throwDice();
 
-        \Tracy\Debugger::barDump($this->_resultDice1, "Dice 1");
-        \Tracy\Debugger::barDump($this->_resultDice2, "Dice 2");
-
         //TODO: Ver se está a jogar o bot ou o player
         //Board::checkFinalPlayP1($_resultDice1 + $_resultDice2);
 
