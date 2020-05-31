@@ -4,19 +4,19 @@ use ArmoredCore\WebObjects\Session;
 //Faz chamadas de métodos de outras classes
 class Board{
     private $_dice;
-    private $_resultDice1 = 0;
-    private $_resultDice2 = 0;
-    private $_blockedNumbersP1 = [];
-    private $_blockedNumbersP2 = [];
+    public $_resultDice1;
+    public $_resultDice2;
+    public $_blockedNumbersP1 = [];
+    public $_blockedNumbersP2 = [];
 
     //Lança 2 dados
     public function throwDices(){
-        $dice = new Dice();
-        $this->_resultDice1 = $dice->throwDice();
-        $this->_resultDice2 = $dice->throwDice();
+        $this->_dice = new Dice();
+        $this->_resultDice1 = $this->_dice->throwDice();
+        $this->_resultDice2 = $this->_dice->throwDice();
 
-        \Tracy\Debugger::barDump($this->_resultDice1, "Board");
-        \Tracy\Debugger::barDump($this->_resultDice2, "Board");
+        \Tracy\Debugger::barDump($this->_resultDice1, "Dice 1");
+        \Tracy\Debugger::barDump($this->_resultDice2, "Dice 2");
 
         //TODO: Ver se está a jogar o bot ou o player
         //Board::checkFinalPlayP1($_resultDice1 + $_resultDice2);

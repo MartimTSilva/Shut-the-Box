@@ -1,11 +1,11 @@
 <?php
 
 class GameEngine{
-    private $_board;
+    public $_board;
     private $_gameState = 0;
 
     public function startGame(){
-        $_board = new Board();
+        $this->_board = new Board();
     }
 
     public function getGameState(){
@@ -13,6 +13,5 @@ class GameEngine{
     }
 
     public function updateGameState(){
-
     }
 }

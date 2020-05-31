@@ -2,8 +2,8 @@
 use ArmoredCore\WebObjects\Session;
 
 class BlockedNumbers{
-    public $_numBlock = [];
-    public $_numBlockCurrentPlay = [];
+    private $_numBlock = [];
+    private $_numBlockCurrentPlay = [];
 
     protected function start(){
         //Coloca vetor a falso
