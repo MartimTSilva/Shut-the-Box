@@ -27,9 +27,9 @@ class Board{
     }
 
     //Verifica se pode jogar mais uma vez
-    public function checkFinalPlayP1($sum){
+    public function checkFinalPlayP1($sumDices){
         //Vê todas as somas possiveis da $sum e dos números não bloquados
-        if($this->checkIfPlayIsPossible($sum)){
+        if($this->checkIfPlayIsPossible($sumDices)){
             return false;
         } else {
             //Se não poder, envia "true"/que é a final play
@@ -38,8 +38,8 @@ class Board{
     }
 
     //Verifica se pode jogar mais uma vez
-    public function checkFinalPlayP2($sum){
-        if($this->checkIfPlayIsPossible($sum)){
+    public function checkFinalPlayP2($sumDices){
+        if($this->checkIfPlayIsPossible($sumDices)){
             return false;
         } else {
             //Se não poder, acaba o jogo
@@ -75,19 +75,25 @@ class Board{
         }
     }*/
 
-    public function checkIfPlayIsPossible($sum)
+    public function checkIfPlayIsPossible($sumDices)
     {
         $game = Session::get('game');
 
+        //Todos os números possiveis
         $_availableNumbers = [1, 2 , 3, 4, 5, 6, 7, 8, 9];
+
+        //Vê quem está a jogar
         if ($game->getGameState() == 2){
+            //Vê quais os números que o Player 1 não bloqueou
             $_availableNumbers = array_diff($_availableNumbers, $game->_board->_blockedNumbersP1->_numBlock);
         } else if ($game->getGameState() == 4){
+            //Vê quais os números que o Player 2 não bloqueou
             $_availableNumbers = array_diff($_availableNumbers, $game->_board->_blockedNumbersP2->_numBlock);
         }
 
+        //Com os números que não estão bloqueados vamos ver se ainda é possivel fazer a jogada
         foreach ($_availableNumbers as $number){
-            if ($number == $sum){
+            if ($number == $sumDices){
                 return true;
             } else {
                 foreach ($_availableNumbers as $number_2nd_array){
@@ -95,7 +101,7 @@ class Board{
                         continue;
                     } else {
                         $num_sum=$number + $number_2nd_array;
-                        if($num_sum == $sum){
+                        if($num_sum == $sumDices){
                             return true;
                         }
                     }
