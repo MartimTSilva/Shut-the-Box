@@ -16,15 +16,15 @@ $game = Data::get('game');
             <div class="playerNumbers">
                 <?php if (Session::has('game')){
                     if ($game->getGameState() == 2) { ?>
-                        <a <?php if (in_array(1, $game->_board->_blockedNumbersP1)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 1)?>">1</a>
-                        <a <?php if (in_array(2, $game->_board->_blockedNumbersP1)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 2)?>">2</a>
-                        <a <?php if (in_array(3, $game->_board->_blockedNumbersP1)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 3)?>">3</a>
-                        <a <?php if (in_array(4, $game->_board->_blockedNumbersP1)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 4)?>">4</a>
-                        <a <?php if (in_array(5, $game->_board->_blockedNumbersP1)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 5)?>">5</a>
-                        <a <?php if (in_array(6, $game->_board->_blockedNumbersP1)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 6)?>">6</a>
-                        <a <?php if (in_array(7, $game->_board->_blockedNumbersP1)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 7)?>">7</a>
-                        <a <?php if (in_array(8, $game->_board->_blockedNumbersP1)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 8)?>">8</a>
-                        <a <?php if (in_array(9, $game->_board->_blockedNumbersP1)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 9)?>">9</a>
+                        <a <?php if (in_array(1, $game->_board->_blockedNumbersP1->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(1, $game->_board->_blockedNumbersP1->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 1)?>">1</a>
+                        <a <?php if (in_array(2, $game->_board->_blockedNumbersP1->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(2, $game->_board->_blockedNumbersP1->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 2)?>">2</a>
+                        <a <?php if (in_array(3, $game->_board->_blockedNumbersP1->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(3, $game->_board->_blockedNumbersP1->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 3)?>">3</a>
+                        <a <?php if (in_array(4, $game->_board->_blockedNumbersP1->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(4, $game->_board->_blockedNumbersP1->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 4)?>">4</a>
+                        <a <?php if (in_array(5, $game->_board->_blockedNumbersP1->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(5, $game->_board->_blockedNumbersP1->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 5)?>">5</a>
+                        <a <?php if (in_array(6, $game->_board->_blockedNumbersP1->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(6, $game->_board->_blockedNumbersP1->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 6)?>">6</a>
+                        <a <?php if (in_array(7, $game->_board->_blockedNumbersP1->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(7, $game->_board->_blockedNumbersP1->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 7)?>">7</a>
+                        <a <?php if (in_array(8, $game->_board->_blockedNumbersP1->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(8, $game->_board->_blockedNumbersP1->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 8)?>">8</a>
+                        <a <?php if (in_array(9, $game->_board->_blockedNumbersP1->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(9, $game->_board->_blockedNumbersP1->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 9)?>">9</a>
                     <?php } else { ?>
                         <a disabled="true" class="btn btn-action">1</a>
                         <a disabled="true" class="btn btn-action">2</a>
@@ -50,7 +50,15 @@ $game = Data::get('game');
                 <img src="/weblogicmvc/public/img/user.png">
             </div>
             <div class="playerPoints">
-                <p>&nbsp;</p>
+                <?php if (!Session::has('game')) {?>
+                    <p>&nbsp;</p>
+                <?php } else {
+                    if ($game->getGameState() >= 3) { ?>
+                        <p><?= Session::get('P1_sumPoints');  ?> </p>
+                    <?php } else { ?>
+                        <p>&nbsp;</p>
+                    <?php }
+                } ?>
             </div>
         </div>
         <div class="dices">
@@ -70,26 +78,36 @@ $game = Data::get('game');
         </div>
         <?php if (!Session::has('game')){?>
             <a class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/startGame')?>">Começar jogo</a>
-        <?php } else {?>              
-            <a <?php if ($game->getGameState() == 2 || $game->getGameState() == 4){ ?> disabled <?php } ?>class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/throwDices')?>">Lançar dados</a>
+        <?php } else if($game->getGameState() == 5) {?>              
+            <a class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/startGame')?>">Novo Jogo</a> 
+        <?php } else {?>
+            <a <?php if ($game->_board->_diceSum != 0 && $game->getGameState() == 2 || $game->_board->_diceSum != 0 &&$game->getGameState() == 4){ ?> disabled <?php } ?>class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/throwDices')?>">Lançar dados</a>
         <?php } ?>
         <div class="bot">
             <div class="botPoints">
-                <p>&nbsp;</p>
+                <?php if (!Session::has('game')) {?>
+                    <p>&nbsp;</p>
+                <?php } else {
+                    if ($game->getGameState() == 5) { ?>
+                        <p><?= Session::get('P2_sumPoints');  ?> </p>
+                    <?php } else { ?>
+                        <p>&nbsp;</p>
+                    <?php } ?>
+                <?php } ?>
             </div>
             <div class="botNumbers">
                 <img src="/weblogicmvc/public/img/bot.png">
                 <?php if (Session::has('game')){
                     if ($game->getGameState() == 4) { ?>
-                        <a <?php if (in_array(1, $game->_board->_blockedNumbersP2)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 1)?>">1</a>
-                        <a <?php if (in_array(2, $game->_board->_blockedNumbersP2)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 2)?>">2</a>
-                        <a <?php if (in_array(3, $game->_board->_blockedNumbersP2)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 3)?>">3</a>
-                        <a <?php if (in_array(4, $game->_board->_blockedNumbersP2)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 4)?>">4</a>
-                        <a <?php if (in_array(5, $game->_board->_blockedNumbersP2)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 5)?>">5</a>
-                        <a <?php if (in_array(6, $game->_board->_blockedNumbersP2)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 6)?>">6</a>
-                        <a <?php if (in_array(7, $game->_board->_blockedNumbersP2)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 7)?>">7</a>
-                        <a <?php if (in_array(8, $game->_board->_blockedNumbersP2)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 8)?>">8</a>
-                        <a <?php if (in_array(9, $game->_board->_blockedNumbersP2)){ ?> disabled <?php } ?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 9)?>">9</a>
+                        <a <?php if (in_array(1, $game->_board->_blockedNumbersP2->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(1, $game->_board->_blockedNumbersP2->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 1)?>">1</a>
+                        <a <?php if (in_array(2, $game->_board->_blockedNumbersP2->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(2, $game->_board->_blockedNumbersP2->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 2)?>">2</a>
+                        <a <?php if (in_array(3, $game->_board->_blockedNumbersP2->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(3, $game->_board->_blockedNumbersP2->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 3)?>">3</a>
+                        <a <?php if (in_array(4, $game->_board->_blockedNumbersP2->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(4, $game->_board->_blockedNumbersP2->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 4)?>">4</a>
+                        <a <?php if (in_array(5, $game->_board->_blockedNumbersP2->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(5, $game->_board->_blockedNumbersP2->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 5)?>">5</a>
+                        <a <?php if (in_array(6, $game->_board->_blockedNumbersP2->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(6, $game->_board->_blockedNumbersP2->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 6)?>">6</a>
+                        <a <?php if (in_array(7, $game->_board->_blockedNumbersP2->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(7, $game->_board->_blockedNumbersP2->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 7)?>">7</a>
+                        <a <?php if (in_array(8, $game->_board->_blockedNumbersP2->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(8, $game->_board->_blockedNumbersP2->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 8)?>">8</a>
+                        <a <?php if (in_array(9, $game->_board->_blockedNumbersP2->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(9, $game->_board->_blockedNumbersP2->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 9)?>">9</a>
                     <?php } else { ?>
                         <a disabled="true" class="btn btn-action">1</a>
                         <a disabled="true" class="btn btn-action">2</a>
