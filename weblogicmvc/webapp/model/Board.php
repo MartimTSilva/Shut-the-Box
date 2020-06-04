@@ -54,11 +54,13 @@ class Board{
         if ($_P1_final_points < $_P2_final_points){
             //Player 1 ganha
             return 1;
+        } else if ($_P1_final_points == $_P2_final_points){
+            //Empate
+            return 3;
         } else {
             //Player 2 ganha
             return 2;
         }
-        //TODO: Empates?
     }
 
     /*public function getWinnerPoints(){
