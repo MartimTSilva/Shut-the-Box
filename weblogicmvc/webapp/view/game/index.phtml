@@ -64,7 +64,13 @@ $game = Data::get('game');
         <div class="dices">
             <?php 
             if (Session::has('game')){
-                if (isset($game->_board->_resultDice1)){
+                if ($game->getGameState() == 5){ ?>
+                    <?php if ($game->_board->getWinner() == 1) { ?>
+                        <p style="font-size: 40px; color: white; font-weight: bold;">Vencedor: <?php echo Session::get('username') ?></p>
+                    <?php } else { ?>
+                        <p style="font-size: 40px; color: white; font-weight: bold;">Vencedor: Joagador 2</p>
+                    <?php } ?>
+                <?php } else if (isset($game->_board->_resultDice1)){
                     echo '<img src="' . Asset::image($game->_board->_resultDice1 . '.png') . '">';
                     echo '<img src="' . Asset::image($game->_board->_resultDice2 . '.png') . '">';
                 } else { ?>

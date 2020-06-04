@@ -48,28 +48,30 @@ class Board{
     }
 
     public function getWinner(){
-        $_max_possible_points = 45;
-        $_P1_final_points = $_max_possible_points - Session::get('P1_numBlock');
-        $_P2_final_points = $_max_possible_points - Session::get('P2_numBlock');
+        $_P1_final_points = Session::get('P1_sumPoints');
+        $_P2_final_points = Session::get('P2_sumPoints');
 
         if ($_P1_final_points < $_P2_final_points){
-            //Player ganha
+            //Player 1 ganha
             return 1;
         } else {
-            //Bot ganha
+            //Player 2 ganha
             return 2;
         }
         //TODO: Empates?
     }
 
-    public function getWinnerPoints(){
-        $_max_possible_points = 45;
-        if (Board::getWinner() == 1) {
-            return $_max_possible_points - Session::get('P1_numBlock');
+    /*public function getWinnerPoints(){
+        $_P1_final_points = Session::get('P1_sumPoints');
+        $_P2_final_points = Session::get('P2_sumPoints');
+
+        if ($this->getWinner($_P1_final_points, $_P2_final_points) == 1) {
+            //TODO: Guarda nos leaderboards
+            return $_P1_final_points;
         } else {
-            return $_max_possible_points - Session::get('P2_numBlock');
+            return $_P2_final_points;
         }
-    }
+    }*/
 
     public function checkIfPlayIsPossible($sum)
     {
