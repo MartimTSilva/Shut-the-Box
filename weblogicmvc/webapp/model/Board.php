@@ -52,7 +52,20 @@ class Board{
         $_P2_final_points = Session::get('P2_sumPoints');
 
         if ($_P1_final_points < $_P2_final_points){
-            //Player 1 ganha
+            //Guarda nos leaderboards
+            $user_id = Session::get('userid');
+
+            //Timezone para a data
+            date_default_timezone_set("Europe/Lisbon");
+           
+            $classification = new Classification([
+                "user_id" => $user_id,
+                "points" => $_P1_final_points,
+                "date" => date("Y/m/d H:i:s")
+            ]);
+            $classification->save();
+
+            //Player 1 ganha, retorna 1.
             return 1;
         } else if ($_P1_final_points == $_P2_final_points){
             //Empate
@@ -68,7 +81,6 @@ class Board{
         $_P2_final_points = Session::get('P2_sumPoints');
 
         if ($this->getWinner($_P1_final_points, $_P2_final_points) == 1) {
-            //TODO: Guarda nos leaderboards
             return $_P1_final_points;
         } else {
             return $_P2_final_points;
@@ -91,7 +103,7 @@ class Board{
             $_availableNumbers = array_diff($_availableNumbers, $game->_board->_blockedNumbersP2->_numBlock);
         }
 
-        //Com os números que não estão bloqueados vamos ver se ainda é possivel fazer a jogada
+        //Com os números que não estão bloqueados, vamos ver se ainda é possivel fazer a jogada
         foreach ($_availableNumbers as $number){
             if ($number == $sumDices){
                 return true;

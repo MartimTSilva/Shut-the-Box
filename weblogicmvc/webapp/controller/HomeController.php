@@ -49,7 +49,7 @@ class HomeController extends BaseController
                 'user_id' => $classification->user_id,
                 'points' => $classification->points,
                 'username' => $username,
-                'date' => date_format( $classification->date, 'd/m/Y - H:m')
+                'date' => date_format( $classification->date, 'd/m/Y - H:i')
             ]);
         }
         return View::make('home.top', ["leaderboard" => $Top10]);
