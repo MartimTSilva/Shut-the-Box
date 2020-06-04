@@ -57,6 +57,10 @@ class ShutBoxController extends BaseController
                 //Muda para o 2 jogador
                 $game->updateGameState(3);
 
+                //Remove os dados do jogador 1
+                $game->_board->_resultDice1 = null;
+                $game->_board->_resultDice2 = null;
+
                 //Calcula os pontos do jogador 1
                 $_P1_SumPoints = $game->_board->_blockedNumbersP1->getFinalPointsSum();
                 Session::set('P1_sumPoints', 45 - $_P1_SumPoints);

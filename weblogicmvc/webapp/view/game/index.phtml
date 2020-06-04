@@ -71,8 +71,13 @@ $game = Data::get('game');
                         <p style="font-size: 40px; color: white; font-weight: bold;">Vencedor: Joagador 2</p>
                     <?php } ?>
                 <?php } else if (isset($game->_board->_resultDice1)){
-                    echo '<img src="' . Asset::image($game->_board->_resultDice1 . '.png') . '">';
-                    echo '<img src="' . Asset::image($game->_board->_resultDice2 . '.png') . '">';
+                    if ($game->getGameState() == 1 || $game->getGameState() == 2) {
+                        echo '<img src="' . Asset::image('P1_' . $game->_board->_resultDice1 . '.png') . '">';
+                        echo '<img src="' . Asset::image('P1_' . $game->_board->_resultDice2 . '.png') . '">';
+                    } else {
+                        echo '<img src="' . Asset::image('P2_' . $game->_board->_resultDice1 . '.png') . '">';
+                        echo '<img src="' . Asset::image('P2_' . $game->_board->_resultDice2 . '.png') . '">';
+                    } 
                 } else { ?>
                     <img src="/weblogicmvc/public/img/blank_dice.png">
                     <img src="/weblogicmvc/public/img/blank_dice.png">
