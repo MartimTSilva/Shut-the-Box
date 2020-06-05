@@ -8,7 +8,6 @@ use ArmoredCore\WebObjects\Asset;
 Layout::includeLayout('header');
 $game = Data::get('game');
 \Tracy\Debugger::barDump($game, "Game");
-\Tracy\Debugger::barDump($game->_board->_blockedNumbersP1, "Game");
 ?>
 
 <div class="container">
@@ -48,7 +47,7 @@ $game = Data::get('game');
                         <a disabled="true" class="btn btn-action">8</a>
                         <a disabled="true" class="btn btn-action">9</a>
                     <?php }?>
-                <img src="/weblogicmvc/public/img/user.png">
+                <img src="/weblogicmvc/public/img/player1.png">
             </div>
             <div class="playerPoints">
                 <?php if (!Session::has('game')) {?>
@@ -110,7 +109,7 @@ $game = Data::get('game');
                 <?php } ?>
             </div>
             <div class="botNumbers">
-                <img src="/weblogicmvc/public/img/bot.png">
+                <img src="/weblogicmvc/public/img/player2.png">
                 <?php if (Session::has('game')){
                     if ($game->getGameState() == 4) { ?>
                         <a <?php if (in_array(1, $game->_board->_blockedNumbersP2->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(1, $game->_board->_blockedNumbersP2->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 1)?>">1</a>
