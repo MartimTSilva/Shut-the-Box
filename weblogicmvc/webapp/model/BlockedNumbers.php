@@ -17,12 +17,9 @@ class BlockedNumbers{
         if (!in_array($number, $this->_numBlockCurrentPlay)){
             //Vê se já tem 2 números bloqueados
             if(sizeof($this->_numBlockCurrentPlay) < 2){
-                //Vê se o numero pressionado é menor ou igual à soma de dados
-                if ($number <= $game->_board->_diceSum){
-                    //Adiciona o número aos dos bloqueados
-                    array_push($this->_numBlockCurrentPlay, $number);
-                    return true;
-                }
+                //Adiciona o número aos dos bloqueados
+                array_push($this->_numBlockCurrentPlay, $number);
+                return true;
             }
         } 
         else {

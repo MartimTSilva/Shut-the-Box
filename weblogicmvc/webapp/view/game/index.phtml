@@ -8,6 +8,7 @@ use ArmoredCore\WebObjects\Asset;
 Layout::includeLayout('header');
 $game = Data::get('game');
 \Tracy\Debugger::barDump($game, "Game");
+\Tracy\Debugger::barDump($game->_board->_blockedNumbersP1, "Game");
 ?>
 
 <div class="container">

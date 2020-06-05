@@ -52,12 +52,13 @@ class Board{
         $_P2_final_points = Session::get('P2_sumPoints');
 
         if ($_P1_final_points < $_P2_final_points){
-            //Guarda nos leaderboards
+            //Userid para guardar classificação
             $user_id = Session::get('userid');
 
             //Timezone para a data
             date_default_timezone_set("Europe/Lisbon");
-           
+            
+            //Guarda a classificação
             $classification = new Classification([
                 "user_id" => $user_id,
                 "points" => $_P1_final_points,
