@@ -51,12 +51,12 @@ $game = Data::get('game');
             </div>
             <div class="playerPoints">
                 <?php if (!Session::has('game')) {?>
-                    <p>&nbsp;</p>
+                    <a class="btn btn-action" disabled>&nbsp;</a>
                 <?php } else {
                     if ($game->getGameState() >= 3) { ?>
-                        <p><?= Session::get('P1_sumPoints');  ?> </p>
+                        <a class="btn btn-action" disabled><?= Session::get('P1_sumPoints'); ?></a>
                     <?php } else { ?>
-                        <p>&nbsp;</p>
+                        <a class="btn btn-action" disabled>&nbsp;</a>
                     <?php }
                 } ?>
             </div>
@@ -94,17 +94,17 @@ $game = Data::get('game');
         <?php } else if($game->getGameState() == 5) {?>              
             <a class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/startGame')?>">Novo Jogo</a> 
         <?php } else {?>
-            <a <?php if ($game->_board->_diceSum != 0 && $game->getGameState() == 2 || $game->_board->_diceSum != 0 &&$game->getGameState() == 4){ ?> disabled <?php } ?>class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/throwDices')?>">Lançar dados</a>
+            <a <?php if ($game->_board->_diceSum != 0 && $game->getGameState() == 2 || $game->_board->_diceSum != 0 && $game->getGameState() == 4){ ?> disabled <?php } ?>class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/throwDices')?>">Lançar dados</a>
         <?php } ?>
         <div class="bot">
             <div class="botPoints">
                 <?php if (!Session::has('game')) {?>
-                    <p>&nbsp;</p>
+                    <a class="btn btn-action" disabled>&nbsp;</a>
                 <?php } else {
                     if ($game->getGameState() == 5) { ?>
-                        <p><?= Session::get('P2_sumPoints');  ?> </p>
+                        <a class="btn btn-action" disabled> <?= Session::get('P2_sumPoints'); ?> </a>
                     <?php } else { ?>
-                        <p>&nbsp;</p>
+                        <a class="btn btn-action" disabled>&nbsp;</a>
                     <?php } ?>
                 <?php } ?>
             </div>
