@@ -29,9 +29,6 @@ Router::post('home/login',	'UserController/loginUser');
 //Logout
 Router::get('home/', 'UserController/logoutUser');
 
-//Game
-Router::get('game/index',	'ShutBoxController/index');
-
 //UserPage
 Router::get('user/edit', 'UserController/editPage');
 Router::post('user/update', 'UserController/updateUserDetails');
@@ -41,5 +38,12 @@ Router::get('admin/index',	'AdminController/index');
 
 //Leaderboard
 Router::get('home/top',	    'HomeController/getTop10');
+
+//Game
+Router::get('game/index',	'ShutBoxController/index');
+Router::get('game/startGame',	'ShutBoxController/startGame');
+Router::get('game/blockNumber',	'ShutBoxController/blockNumber');
+Router::get('game/throwDices',	'ShutBoxController/throwDices');
+
 
 /************** End of URLEncoder Routing Rules ************************************/

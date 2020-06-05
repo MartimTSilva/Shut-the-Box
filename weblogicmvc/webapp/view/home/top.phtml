@@ -24,7 +24,8 @@ $leaderboard = Data::get("leaderboard");
                         <th style="text-align:center;">Data</th>
                     </tr>
                     <?php $i = 1; ?>
-                    <?php foreach ($leaderboard as $classification) { ?>
+                    <?php foreach ($leaderboard as $classification) {
+                        \Tracy\Debugger::barDump($classification, 'classification'); ?>
                         <?php if(Session::has('userid') && Session::get('userid') == $classification->user_id) {?>
                         <tr style="background-color: beige;">
                             <th style="width:5%; text-align:center;"><?= $i++ ?></th>

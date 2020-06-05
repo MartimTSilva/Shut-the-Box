@@ -36,6 +36,7 @@ class UserController extends BaseController
                 Session::set('loggedin', true);
                 Session::set('userid', $user->id);
                 Session::set('admin', $user->admin);
+                Session::set('username', $username);
                 if ($user->admin == 1) {
                     Redirect::toRoute('admin/index');
                 }

@@ -17,7 +17,7 @@ Layout::includeLayout('header') ?>
                 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <h3 class="thin text-center">Criar Conta</h3>
+                            <h1 class="thin text-center">Criar Conta</h1>
                             <hr>
 							<form action="<?= URL::toRoute('home/signup') ?>" method="Post">
                                 <div class="top-margin">
@@ -42,7 +42,7 @@ Layout::includeLayout('header') ?>
                                 </div>
                                 <div class="top-margin">
                                     <label>Birthdate <span class="text-danger">*</span></label>
-                                    <input required type="date" class="form-control" name="birthdate">
+                                    <input required type="date" value="<?php date_format(new DateTime($user->date), 'd/m/Y'); ?>" class="form-control" name="birthdate">
                                 </div>
                                 <hr>
                                 <div class="row">
