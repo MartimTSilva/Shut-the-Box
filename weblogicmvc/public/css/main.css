@@ -163,18 +163,29 @@ img.pull-left { margin-right: 10px; }
 	margin-left: 30px;
 }
 
-#admin table {
-	font-family: arial, sans-serif;
+#admin {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	border-collapse: collapse;
 	width: 100%;
-}
-
-#admin  td, th {
-	border: 1px solid #dddddd;
-	text-align: left;
+  }
+  
+  #admin td, #admin th {
+	border: 1px solid #ddd;
 	padding: 8px;
-}
-
-#admin tr:nth-child(even) {
-	background-color: #dddddd;
-}
+  }
+  
+  #admin tr:nth-child(even){
+	  background-color: #f2f2f2;
+	}
+  
+  #admin tr:hover {
+	  background-color: #ddd;
+	}
+  
+  #admin th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #414141;
+	color: white;
+  }

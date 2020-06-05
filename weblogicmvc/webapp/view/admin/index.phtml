@@ -8,13 +8,13 @@ $list_all_users = Data::get("all_users");
 <!-- container -->
 <div class="container">
 	<h2>Administração</h2>
+	<hr>
 	<table id="admin">
 		<tr>
 			<th>Name</th>
 			<th>Username</th>
 			<th>Email</th>
 			<th>Bloqueado</th>
-			<th>Administrador</th>
 		</tr>
 		<?php foreach ($list_all_users as $user) { ?>
 			<tr>
@@ -25,11 +25,6 @@ $list_all_users = Data::get("all_users");
 					<td><a style="width:100%;" class="btn btn-action" role="button" href="">Bloquear</a></td>
 				<?php } else { ?>
 					<td><a class="btn btn-action" role="button" href="">Desbloquear</a></td>
-				<?php } ?>
-				<?php if ($user->admin == 0) {?>
-					<td><a style="width:100%;" class="btn btn-action" role="button" href="">Promover</a></td>
-				<?php } else { ?>
-					<td><a class="btn btn-action" role="button" href="">Despromover</a></td>
 				<?php } ?>
 			</tr>
 		<?php } ?>
