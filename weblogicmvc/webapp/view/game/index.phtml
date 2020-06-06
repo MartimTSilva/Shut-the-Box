@@ -35,23 +35,13 @@ $game = Data::get('game');
                         <a disabled="true" class="btn btn-action">7</a>
                         <a disabled="true" class="btn btn-action">8</a>
                         <a disabled="true" class="btn btn-action">9</a>
-                        <?php }
-                    } else { ?>
-                        <a disabled="true" class="btn btn-action">1</a>
-                        <a disabled="true" class="btn btn-action">2</a>
-                        <a disabled="true" class="btn btn-action">3</a>
-                        <a disabled="true" class="btn btn-action">4</a>
-                        <a disabled="true" class="btn btn-action">5</a>
-                        <a disabled="true" class="btn btn-action">6</a>
-                        <a disabled="true" class="btn btn-action">7</a>
-                        <a disabled="true" class="btn btn-action">8</a>
-                        <a disabled="true" class="btn btn-action">9</a>
-                    <?php }?>
-                <img src="/weblogicmvc/public/img/player1.png">
+                        <?php } ?>
+                        <img src="/weblogicmvc/public/img/player1.png">
+                    <?php } ?>
             </div>
             <div class="playerPoints">
                 <?php if (!Session::has('game')) {?>
-                    <a class="btn btn-action" disabled>&nbsp;</a>
+
                 <?php } else {
                     if ($game->getGameState() >= 3) { ?>
                         <a class="btn btn-action" disabled><?= Session::get('P1_sumPoints'); ?></a>
@@ -66,11 +56,11 @@ $game = Data::get('game');
             if (Session::has('game')){
                 if ($game->getGameState() == 5){ ?>
                     <?php if ($game->_board->getWinner() == 1) { ?>
-                        <p style="font-size: 40px; color: white; font-weight: bold;">Vencedor: <?php echo Session::get('username') ?></p>
+                        <p>Vencedor: <?php echo Session::get('username') ?></p>
                     <?php } else if ($game->_board->getWinner() == 2){ ?>
-                        <p style="font-size: 40px; color: white; font-weight: bold;">Vencedor: Joagador 2</p>
+                        <p>Vencedor: Joagador 2</p>
                     <?php } else { ?>
-                        <p style="font-size: 40px; color: white; font-weight: bold;">Empate!</p>
+                        <p>Empate!</p>
                     <?php } ?>
                 <?php } else if (isset($game->_board->_resultDice1)){
                     if ($game->getGameState() == 1 || $game->getGameState() == 2) {
@@ -84,13 +74,10 @@ $game = Data::get('game');
                     <img src="/weblogicmvc/public/img/blank_dice.png">
                     <img src="/weblogicmvc/public/img/blank_dice.png">
                 <?php }
-            } else {?>
-                <img src="/weblogicmvc/public/img/blank_dice.png">
-                <img src="/weblogicmvc/public/img/blank_dice.png">
-            <?php } ?>
+            } ?>
         </div>
         <?php if (!Session::has('game')){?>
-            <a class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/startGame')?>">Começar jogo</a>
+            <a class="newGame btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/startGame')?>">Começar jogo</a>
         <?php } else if($game->getGameState() == 5) {?>              
             <a class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/startGame')?>">Novo Jogo</a> 
         <?php } else {?>
@@ -99,7 +86,7 @@ $game = Data::get('game');
         <div class="bot">
             <div class="botPoints">
                 <?php if (!Session::has('game')) {?>
-                    <a class="btn btn-action" disabled>&nbsp;</a>
+
                 <?php } else {
                     if ($game->getGameState() == 5) { ?>
                         <a class="btn btn-action" disabled> <?= Session::get('P2_sumPoints'); ?> </a>
@@ -109,9 +96,9 @@ $game = Data::get('game');
                 <?php } ?>
             </div>
             <div class="botNumbers">
-                <img src="/weblogicmvc/public/img/player2.png">
-                <?php if (Session::has('game')){
-                    if ($game->getGameState() == 4) { ?>
+                <?php if (Session::has('game')){?>
+                    <img src="/weblogicmvc/public/img/player2.png">
+                    <?php if ($game->getGameState() == 4) { ?>
                         <a <?php if (in_array(1, $game->_board->_blockedNumbersP2->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(1, $game->_board->_blockedNumbersP2->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 1)?>">1</a>
                         <a <?php if (in_array(2, $game->_board->_blockedNumbersP2->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(2, $game->_board->_blockedNumbersP2->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 2)?>">2</a>
                         <a <?php if (in_array(3, $game->_board->_blockedNumbersP2->_numBlockCurrentPlay)){ ?> style="background-color: #555;" <?php } if (in_array(3, $game->_board->_blockedNumbersP2->_numBlock)){ ?> disabled <?php }?> class="btn btn-action" role="button" href="<?= Url::toRoute('game/blockNumber', 3)?>">3</a>
@@ -132,17 +119,7 @@ $game = Data::get('game');
                         <a disabled="true" class="btn btn-action">8</a>
                         <a disabled="true" class="btn btn-action">9</a>
                     <?php }
-                } else { ?>
-                    <a disabled="true" class="btn btn-action">1</a>
-                    <a disabled="true" class="btn btn-action">2</a>
-                    <a disabled="true" class="btn btn-action">3</a>
-                    <a disabled="true" class="btn btn-action">4</a>
-                    <a disabled="true" class="btn btn-action">5</a>
-                    <a disabled="true" class="btn btn-action">6</a>
-                    <a disabled="true" class="btn btn-action">7</a>
-                    <a disabled="true" class="btn btn-action">8</a>
-                    <a disabled="true" class="btn btn-action">9</a>
-                <?php }?>
+                } ?>
             </div>
         </div>
     </div>
