@@ -58,7 +58,7 @@ $game = Data::get('game');
                     <?php if ($game->_board->getWinner() == 1) { ?>
                         <p>Vencedor: <?php echo Session::get('username') ?></p>
                     <?php } else if ($game->_board->getWinner() == 2){ ?>
-                        <p>Vencedor: Joagador 2</p>
+                        <p>Vencedor: Jogador 2</p>
                     <?php } else { ?>
                         <p>Empate!</p>
                     <?php } ?>

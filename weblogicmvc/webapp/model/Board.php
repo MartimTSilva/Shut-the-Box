@@ -52,6 +52,9 @@ class Board{
         $_P2_final_points = Session::get('P2_sumPoints');
 
         if ($_P1_final_points < $_P2_final_points){
+            //Diferença dos dois resultados
+            $difference_points = $_P2_final_points - $_P1_final_points;
+
             //Userid para guardar classificação
             $user_id = Session::get('userid');
 
@@ -61,7 +64,7 @@ class Board{
             //Guarda a classificação
             $classification = new Classification([
                 "user_id" => $user_id,
-                "points" => $_P1_final_points,
+                "points" => $difference_points,
                 "date" => date("Y/m/d H:i:s")
             ]);
             $classification->save();
