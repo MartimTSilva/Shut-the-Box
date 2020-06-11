@@ -18,13 +18,13 @@ $list_all_users = Data::get("all_users");
 		</tr>
 		<?php foreach ($list_all_users as $user) { ?>
 			<tr>
-				<td style="width:35%;"><?= $user->name ?></td>
+				<td style="width:30%;"><?= $user->name ?></td>
 				<td style="width:20%;"><?= $user->username ?></td>
-				<td style="width:35%;"><?= $user->email ?></td>
+				<td style="width:30%;"><?= $user->email ?></td>
 				<?php if ($user->blocked == 0) {?>
-					<td><a style="width:100%;" class="btn btn-action" role="button" href="">Bloquear</a></td>
+					<td style="width:20%;"><a style="width:100%;" class="btn btn-action" role="button" href="<?= Url::toRoute('admin/blockUser', $user->id)?>">Bloquear</a></td>
 				<?php } else { ?>
-					<td><a class="btn btn-action" role="button" href="">Desbloquear</a></td>
+					<td style="width:20%;"><a style="width:100%;"class="btn btn-action" role="button" href="<?= Url::toRoute('admin/blockUser', $user->id)?>">Desbloquear</a></td>
 				<?php } ?>
 			</tr>
 		<?php } ?>

@@ -35,6 +35,8 @@ Router::post('user/update', 'UserController/updateUserDetails');
 
 //Admin
 Router::get('admin/index',	'AdminController/index');
+Router::get('admin/blockUser',	'AdminController/blockUser');
+Router::get('admin/giveAdmin',	'AdminController/giveAdmin');
 
 //Leaderboard
 Router::get('home/top',	    'HomeController/getTop10');

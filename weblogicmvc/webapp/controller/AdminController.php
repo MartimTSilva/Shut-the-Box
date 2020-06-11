@@ -21,4 +21,28 @@ class AdminController extends BaseController
         }
 
     }
+
+    public function blockUser($id)
+    {
+        $user = User::find($id);
+        if($user->blocked == 0)
+            $user->blocked = 1;
+        else 
+            $user->blocked = 0;
+
+        $user->save();
+        return View::make('admin.index', ["all_users" => User::all()]);
+    }
+
+    public function giveAdmin($id)
+    {
+        $user = User::find($id);
+        if($user->admin == 0)
+            $user->admin = 1;
+        else 
+            $user->admin = 0;
+
+        $user->save();
+        return View::make('admin.index', ["all_users" => User::all()]);
+    }
 }
