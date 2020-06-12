@@ -40,15 +40,6 @@ class BlockedNumbers{
         }
     }
 
-    
-    /*public function checkPlay($game){
-        if ($game->_board->_diceSum == 0){
-            $game->updateGameState(1);
-            return true;
-        }
-        return false;
-    }*/
-
     //Vai buscar a soma de todos os números bloqueados
     public function getFinalPointsSum(){
         //Vê se é o bot ou o player a jogar e guarda na sessão os números bloquados

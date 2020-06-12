@@ -67,12 +67,15 @@ class ShutBoxController extends BaseController
             if (!$game->_board->checkFinalPlayP2($game->_board->_resultDice1 + $game->_board->_resultDice2)){
                 $game->updateGameState(4);
             } else {
-                //Acaba o jogo
+                //Muda o estado para o fim do jogo
                 $game->updateGameState(5);
 
                 //Calcula os pontos do jogador 2
                 $_P2_SumPoints = $game->_board->_blockedNumbersP2->getFinalPointsSum();
                 Session::set('P2_sumPoints', 45 - $_P2_SumPoints);
+
+                //Guarda a classificação do vencedor
+                $game->_board->saveClassification();
             }
         } 
         

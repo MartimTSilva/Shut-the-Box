@@ -47,6 +47,9 @@ INSERT INTO `users` (`id`, `name`, `birthdate`, `email`, `username`, `password`,
 (1, 'admin', '2019-06-14', 'admin@mail.com', 'admin', '$2y$10$5gRa.27ajxO5bO7b8KjGAOLMK77V5xb8fGIH9ce4S2H/Xmu3W9HgS', 0, 1);
 COMMIT;
 
+INSERT INTO `users` (`id`, `name`, `birthdate`, `email`, `username`, `password`, `blocked`, `admin`) VALUES
+(2, 'Anónimo', '0000-00-00', 'anonimo@email.com', 'Anónimo', '', 0, 1);
+COMMIT;
 
 --
 -- Estrutura da tabela `classifications`
