@@ -38,7 +38,7 @@ class HomeController extends BaseController
         //Criação do array para as classificações
         $Top10 = [];
         //Vai buscar todas as classificações
-        $all_classifications = Classification::all(array('limit' => 10, 'order' => 'points asc'));
+        $all_classifications = Classification::all(array('limit' => 10, 'order' => 'points desc'));
 
         foreach ($all_classifications as $classification){
             $user = User::find($classification->user_id);

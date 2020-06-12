@@ -30,7 +30,6 @@ class ShutBoxController extends BaseController
         $game->updateGameState(1);
         
         Session::set('game', $game);
-
         return View::make('game.index', ['game' => $game]);
     }
 
@@ -45,11 +44,10 @@ class ShutBoxController extends BaseController
         }
         
         //Lança novos dados
-        $game->_board->throwDices();
-
+        $game->_board->throwDices(); 
+        
         //Vê se é possivel jogar com os dados calhados
-        //Se for o jogador 1 a jogar
-        if ($game->getGameState() == 1 || $game->getGameState() == 2){
+        if ($game->getGameState() == 1 || $game->getGameState() == 2){ //Se for o jogador 1 a jogar
             //Se NÃO for a última jogada, muda de estado para que o P1 possa bloquear números
             if (!$game->_board->checkFinalPlayP1($game->_board->_resultDice1 + $game->_board->_resultDice2)){
                 $game->updateGameState(2);
@@ -65,23 +63,22 @@ class ShutBoxController extends BaseController
                 $_P1_SumPoints = $game->_board->_blockedNumbersP1->getFinalPointsSum();
                 Session::set('P1_sumPoints', 45 - $_P1_SumPoints);
             }
-        }
-        //Se for o jogador 2 a jogar
-        else if ($game->getGameState() == 3 || $game->getGameState() == 4){
+        } else if ($game->getGameState() == 3 || $game->getGameState() == 4){ //Se for o jogador 2 a jogar
             if (!$game->_board->checkFinalPlayP2($game->_board->_resultDice1 + $game->_board->_resultDice2)){
                 $game->updateGameState(4);
             } else {
-                //Acaba o jogo
+                //Muda o estado para o fim do jogo
                 $game->updateGameState(5);
 
                 //Calcula os pontos do jogador 2
                 $_P2_SumPoints = $game->_board->_blockedNumbersP2->getFinalPointsSum();
                 Session::set('P2_sumPoints', 45 - $_P2_SumPoints);
+
+                //Guarda a classificação do vencedor
+                $game->_board->saveClassification();
             }
-        } else if ($game->getGameState() == 5){
-
-        }
-
+        } 
+        
         Session::set('game', $game);
         return View::make('game.index', ['game' => $game]);
     }
@@ -89,21 +86,19 @@ class ShutBoxController extends BaseController
     public function blockNumber($number){
         $game = Session::get('game');
 
-        if ($game->getGameState() == 2) {
-            //Jogador 1 a jogar
+        if ($game->getGameState() == 2) { //Jogador 1 a jogar
             if ($game->_board->_blockedNumbersP1->blockNumber($number, $game)){
-                //Se consegui bloquear então subtrai a soma dos dados
+                //Se conseguir bloquear então subtrai a soma dos dados
                 $game->_board->_diceSum = $game->_board->_diceSum - $number;
             }
-        } else if ($game->getGameState() == 4) {
-            //Jogador 2 a jogar
+        } else if ($game->getGameState() == 4) { //Jogador 2 a jogar
             if ($game->_board->_blockedNumbersP2->blockNumber($number, $game)){
+                //Se conseguir bloquear então subtrai a soma dos dados
                 $game->_board->_diceSum = $game->_board->_diceSum - $number;
             }
         }
 
         Session::set('game', $game);
-
         return View::make('game.index', ['game' => $game]);
     }
 }

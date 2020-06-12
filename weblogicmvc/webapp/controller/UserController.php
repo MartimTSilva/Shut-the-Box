@@ -83,7 +83,7 @@ class UserController extends BaseController
             Redirect::toRoute('home/login');
         } else {
             // return form with data and errors
-            Redirect::flashToRoute('home/signup', ['user' => $user]);
+            Redirect::flashToRoute('home/signup', ['repeat_user' => $user]);
         }
     }
 

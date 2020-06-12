@@ -52,41 +52,62 @@ class Board{
         $_P2_final_points = Session::get('P2_sumPoints');
 
         if ($_P1_final_points < $_P2_final_points){
-            //Userid para guardar classificação
-            $user_id = Session::get('userid');
-
-            //Timezone para a data
-            date_default_timezone_set("Europe/Lisbon");
-            
-            //Guarda a classificação
-            $classification = new Classification([
-                "user_id" => $user_id,
-                "points" => $_P1_final_points,
-                "date" => date("Y/m/d H:i:s")
-            ]);
-            $classification->save();
-
             //Player 1 ganha, retorna 1.
             return 1;
         } else if ($_P1_final_points == $_P2_final_points){
             //Empate
             return 3;
         } else {
-            //Player 2 ganha
+            //Player 2 ganha, retorna 2
             return 2;
         }
     }
 
-    /*public function getWinnerPoints(){
+    public function saveClassification(){
+        //Encontra o vencedor
+        $winner = $this->getWinner();
+
+        //Os pontos dos 2 jogadores guardados na sessão
         $_P1_final_points = Session::get('P1_sumPoints');
         $_P2_final_points = Session::get('P2_sumPoints');
 
-        if ($this->getWinner($_P1_final_points, $_P2_final_points) == 1) {
-            return $_P1_final_points;
-        } else {
-            return $_P2_final_points;
+        if ($winner == 1) {
+            //Diferença dos dois resultados
+            $difference_points = $_P2_final_points - $_P1_final_points;
+
+            //Userid para guardar classificação
+            $user_id = Session::get('userid');
+
+            //Timezone para a data
+            date_default_timezone_set("Europe/Lisbon");
+
+            //Guarda a classificação
+            $classification = new Classification([
+                "user_id" => $user_id,
+                "points" => $difference_points,
+                "date" => date("Y/m/d H:i:s")
+            ]);
+
+            //Guarda a classificação do P1
+            $classification->save();
+
+        } else if ($winner == 2) {
+            //Diferença dos dois resultados
+            $difference_points = $_P1_final_points - $_P2_final_points;
+
+            //Timezone para a data
+            date_default_timezone_set("Europe/Lisbon");
+
+            //Guarda a classificação
+            $classification = new Classification([
+                "user_id" => $winner,
+                "points" => $difference_points,
+                "date" => date("Y/m/d H:i:s")
+            ]);
+            //Guarda a classificação do P2
+            $classification->save();
         }
-    }*/
+    }
 
     public function checkIfPlayIsPossible($sumDices)
     {
