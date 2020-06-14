@@ -6,7 +6,7 @@ use ArmoredCore\WebObjects\ErrMgr;
 
 Layout::includeLayout('header') ?>
 <?php $user = Data::get('repeat_user')?>
-<?php ErrMgr::attach($user);?>
+<?php ErrMgr::attach($user) ?>
 
 	<!-- container -->
     <div class="container">
@@ -21,17 +21,17 @@ Layout::includeLayout('header') ?>
                             <hr>
 							<form action="<?= URL::toRoute('home/signup') ?>" method="Post">
                                 <div class="top-margin">
-                                    <label>Name <span class="text-danger">*</span></label>
+                                    <label>Nome<span class="text-danger">*</span></label>
                                     <input required type="text" value="<?= $user->name ?>" class="form-control" name="name" placeholder="Insira um nome">
                                     <?php echo(ErrMgr::bind('name')) ?>
                                 </div>
                                 <div class="top-margin">
-                                    <label>Username <span class="text-danger">*</span></label>
+                                    <label>Username<span class="text-danger">*</span></label>
                                     <input required type="text" value="<?= $user->username ?>" class="form-control" name="username" placeholder="Insira um username">
                                     <?php echo(ErrMgr::bind('username')) ?>
                                 </div>
                                 <div class="top-margin">
-                                    <label>Email <span class="text-danger">*</span></label>
+                                    <label>Email<span class="text-danger">*</span></label>
                                     <input required type="email" value="<?= $user->email ?>" class="form-control" name="email" placeholder="Insira um email">
                                     <?php echo(ErrMgr::bind('email')) ?>
                                 </div>
@@ -41,8 +41,8 @@ Layout::includeLayout('header') ?>
                                     <?php echo(ErrMgr::bind('password')) ?>
                                 </div>
                                 <div class="top-margin">
-                                    <label>Birthdate <span class="text-danger">*</span></label>
-                                    <input required type="date" class="form-control" name="birthdate">
+                                    <label>Data de Nascimento<span class="text-danger">*</span></label>
+                                    <input required type="date" class="form-control" value="" name="birthdate">
                                 </div>
                                 <hr>
                                 <div class="row">

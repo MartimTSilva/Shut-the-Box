@@ -101,7 +101,8 @@ class UserController extends BaseController
         $user->update_attributes([
             "name" => Post::get('name'),
             "email" => Post::get('email'),
-            "password" => $password
+            "password" => $password,
+            "birthdate" => Post::get('birthdate')
         ]);
 
         //Se os dados forem válido, regista se não volta para a página de registo com os campos preenchidos
